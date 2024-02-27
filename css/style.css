@@ -2,3 +2,43 @@
     max-width: 1200px !important;
     margin: auto !important;
 }
+#product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+#product-container .product-single {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 20px;
+}
+#product-container .product-single h2 {
+    font-size: 25px;
+    color: #403F3F;
+    font-weight: bold;
+}
+#product-container .product-single p {
+    font-size: 18px;
+    line-height: 1.2em;
+}
+#product-container .product-single p.product-price {
+    font-weight: bold;
+    padding: 20px 0;
+}
+#product-container .product-single button {
+    background: #0D6EFD;
+    border-radius: 10px;
+    padding: 12px 35px;
+    color: #fff;
+}
+#product-container .product-single .product-thumbnail {
+    background: #F3F7FF;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+#product-container .product-single .product-thumbnail img {
+    margin: auto;
+}
