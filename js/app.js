@@ -1,6 +1,6 @@
 // Load Mobile Product Data
-const loadPhones = async () => {
-    const response = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone');
+const loadPhones = async (searchText) => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await response.json();
     const phones = data.data;
     // console.log(phones);
@@ -11,6 +11,9 @@ const loadPhones = async () => {
 const displayPhones = phones => {
     // Step 1: Get Card Container by ID
     const productContainer = document.getElementById('product-container');
+    // Clear product container before search new product
+    productContainer.innerHTML = ''; 
+
     phones.forEach(phone =>{
         console.log(phone);
         // Step 2: Create a div in the Card Container
@@ -33,17 +36,11 @@ const displayPhones = phones => {
     })
 }
 
+// handle Search Button
+const handleSearch = () => {
+    const searchField = document.getElementById('searchInput');
+    const searchText = searchField.value;
+    loadPhones(searchText);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-loadPhones();
+// loadPhones();
