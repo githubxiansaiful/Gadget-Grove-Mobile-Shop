@@ -14,6 +14,9 @@ const displayPhones = phones => {
     // Clear product container before search new product
     productContainer.innerHTML = ''; 
 
+    // display only 9 proudct
+    phones = phones.slice(0,9);
+
     phones.forEach(phone =>{
         console.log(phone);
         // Step 2: Create a div in the Card Container
