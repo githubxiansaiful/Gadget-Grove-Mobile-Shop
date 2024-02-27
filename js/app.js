@@ -14,6 +14,16 @@ const displayPhones = phones => {
     // Clear product container before search new product
     productContainer.innerHTML = ''; 
 
+    // Display Show All Button if product > 9
+
+    const showAllProductContainer = document.getElementById('showAllProductContainer');
+    if(phones.length > 9) {
+        showAllProductContainer.classList.remove('hidden');
+    }
+    else {
+        showAllProductContainer.classList.add('hidden');
+    }
+
     // display only 9 proudct
     phones = phones.slice(0,9);
 
@@ -36,14 +46,34 @@ const displayPhones = phones => {
         `
         // Step 4: appendChild
         productContainer.appendChild(productSingleCard);
-    })
+    });
+
+    // Hide search loading bar
+    toggleSearchLoader(false);
 }
 
 // handle Search Button
 const handleSearch = () => {
+    toggleSearchLoader(true);
     const searchField = document.getElementById('searchInput');
     const searchText = searchField.value;
     loadPhones(searchText);
 }
+
+// Toggle Search Loader
+const toggleSearchLoader = (isLoading) => {
+    const loadingSpinner = document.getElementById('search-loader');
+    if(isLoading) {
+        loadingSpinner.classList.remove('hidden');
+    }
+    else {
+        loadingSpinner.classList.add('hidden');
+    }
+}
+
+
+
+
+
 
 // loadPhones();
