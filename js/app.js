@@ -10,10 +10,26 @@ const loadPhones = async () => {
 // Display Phones
 const displayPhones = phones => {
     // Step 1: Get Card Container by ID
+    const productContainer = document.getElementById('product-container');
     phones.forEach(phone =>{
+        console.log(phone);
         // Step 2: Create a div in the Card Container
+        const productSingleCard = document.createElement('div');
+        productSingleCard.classList = `product-single`;
         // Step 3: Set Inner HTML
-        // Step 4: appendChild 
+        productSingleCard.innerHTML = `
+        <div class="product-thumbnail">
+            <img src="${phone.image}">
+        </div>
+        <div class="product-content">
+            <h2>${phone.phone_name}</h2>
+            <p>There are many variations of passages of available, but the majority have suffered</p>
+            <p class="product-price">$999</p>
+            <button>Show Details</button>
+        </div>
+        `
+        // Step 4: appendChild
+        productContainer.appendChild(productSingleCard);
     })
 }
 
