@@ -1,5 +1,5 @@
 // Load Mobile Product Data
-const loadPhones = async (searchText) => {
+const loadPhones = async (searchText='13') => {
     const response = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await response.json();
     const phones = data.data;
@@ -28,7 +28,7 @@ const displayPhones = phones => {
     phones = phones.slice(0,9);
 
     phones.forEach(phone =>{
-        console.log(phone);
+        // console.log(phone);
         // Step 2: Create a div in the Card Container
         const productSingleCard = document.createElement('div');
         productSingleCard.classList = `product-single`;
@@ -41,7 +41,7 @@ const displayPhones = phones => {
             <h2>${phone.phone_name}</h2>
             <p>There are many variations of passages of available, but the majority have suffered</p>
             <p class="product-price">$999</p>
-            <button>Show Details</button>
+            <button onclick="showDetails('${phone.slug}')">Show Details</button>
         </div>
         `
         // Step 4: appendChild
@@ -50,6 +50,23 @@ const displayPhones = phones => {
 
     // Hide search loading bar
     toggleSearchLoader(false);
+}
+
+// Show Product Details Handle
+const showDetails = async (productID) => {
+    // Load single product data
+    const response = await fetch(`https://openapi.programming-hero.com/api/phone/${productID}`);
+    const data = await response.json();
+    displayProductSingleData(data.data);
+}
+
+// Display Product Data
+const displayProductSingleData = (phone) => {
+    console.log(phone);
+    const modalPhoneName = document.getElementById('modal-phone-name');
+    modalPhoneName.innerText = phone.name;
+    // show modal
+    productDetails.showModal();
 }
 
 // handle Search Button
@@ -71,9 +88,4 @@ const toggleSearchLoader = (isLoading) => {
     }
 }
 
-
-
-
-
-
-// loadPhones();
+loadPhones();
